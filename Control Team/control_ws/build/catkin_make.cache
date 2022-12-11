@@ -1,0 +1,2 @@
+control
+-DCATKIN_DEVEL_PREFIX=/home/pinksail/control_ws/devel -DCMAKE_INSTALL_PREFIX=/home/pinksail/control_ws/install -G Unix Makefiles
