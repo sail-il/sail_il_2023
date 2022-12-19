@@ -1,0 +1,31 @@
+import gy271compass as GY271
+import time
+import math
+
+#frequency configuration
+frequency = 10  #10 hz
+delta_time = 1.0 / frequency
+###########################
+
+# initial configuration
+last_angle=0
+last_angular_velocity=0
+###########################
+
+
+sensor = GY271.compass()
+try:
+    while True:
+        # angular velocity
+        angle = sensor.get_bearing()
+        radian_angle = (angle * math.pi) / 180 # radians conversion 
+        angular_velocity = (radian_angle - last_angle)/delta_time
+        angular_acceleration = (angular_velocity - last_angular_velocity)/delta_time
+        last_angle = radian_angle
+        last_angular_velocity = angular_velocity
+        time.sleep(delta_time)
+        print(angular_velocity)
+    ###################################################
+
+except KeyboardInterrupt:
+    print('\nScript end!')
